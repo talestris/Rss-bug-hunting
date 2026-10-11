@@ -23,7 +23,11 @@ function getFiltered() {
   const sort = sortSelect.value;
 
   if (search) {
-    result = result.filter((p) => p.name === search);
+    const searchLower = search.trim().toLowerCase();
+    result = result.filter((p) => {
+      const productNameLower = p.name.toLowerCase();
+      return productNameLower.includes(searchLower);
+    });
   }
 
   if (category !== "all") {
